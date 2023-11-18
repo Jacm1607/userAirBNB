@@ -14,10 +14,8 @@ export class AppController {
 
   @MessagePattern({ cmd: 'ms_user' })
   async handleMessage(@Payload() message: any) {
-    // Deserializar el mensaje JSON
     console.log(message);
 
-    // Devuelve una respuesta opcional
     return 'Mensaje recibido correctamente';
   }
 
