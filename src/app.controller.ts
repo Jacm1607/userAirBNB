@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AppService, User } from './app.service';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 
 @Controller()
 export class AppController {
@@ -9,6 +10,15 @@ export class AppController {
   getHello(@Body() body: any): Promise<any> {
     console.log(body);
     return this.appService.getName(body);
+  }
+
+  @MessagePattern({ cmd: 'ms_user' })
+  async handleMessage(@Payload() message: any) {
+    // Deserializar el mensaje JSON
+    console.log(message);
+
+    // Devuelve una respuesta opcional
+    return 'Mensaje recibido correctamente';
   }
 
   @Get('/user/:uuid')
