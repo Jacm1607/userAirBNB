@@ -23,7 +23,6 @@ export class AppController {
 
   @Post('/user')
   createUser(@Body() body: any): Promise<User> {
-    console.log(body);
     return this.appService.pushUser(body);
   }
 }
